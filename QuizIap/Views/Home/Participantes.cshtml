@@ -1,0 +1,18 @@
+@using IronBugCore.Web.Helpers
+@{
+    ViewBag.Title = "Participantes";
+}
+
+@section Scripts
+{
+    <script src="@Url.ContentVersioned("js/participantes.js")" type="module"></script>
+}
+
+<div ng-controller="ParticipanteController" ng-init="iniciar()">
+    <h2>@ViewBag.Title</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="participante in participantes" ng-bind="participante.Nome"></li>
+    </ul>
+    
+</div>
