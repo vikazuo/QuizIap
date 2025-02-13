@@ -8,17 +8,8 @@
       "sslPort": 44306
     }
   },
-  "profiles": {
-    "http": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "http://localhost:5063",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
-    "https": {
+  "profiles": {    
+    "QuizIap": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

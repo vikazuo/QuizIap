@@ -1,0 +1,56 @@
+:root {
+    --admin-graphite-black: hsl(240, 6%, 10%);
+    --admin-dark-asphalt: hsl(0, 0%, 27%);
+    --admin-soft-white: hsl(0, 0%, 96%);
+    --admin-white: #fff;
+}
+
+body {
+    font-family: "Inter", serif;
+    background-color: var(--admin-soft-white);
+}
+
+main {
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+    overflow-x: auto;
+}
+
+aside {
+    width: 280px;
+    background-color: var(--admin-white);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    background-color: var(--admin-graphite-black) !important;
+}
+
+.link-secondary {
+    color: var(--admin-dark-asphalt) !important;
+}
+
+.text-secondary {
+    color: var(--admin-dark-asphalt) !important;
+}
+
+.bg-secondary-subtle {
+    background-color: var(--admin-soft-white);
+}
+
+.ratio-1x1 {
+    aspect-ratio: 1 !important;
+}
+
+.vr {
+    background-color: var(--admin-dark-asphalt) !important;
+}
+
+.form-control:focus {
+    border-color: var(--admin-dark-asphalt) !important;
+    box-shadow: 0 0 0 .25rem hsla(0, 0%, 27%, 0.25) !important;
+}
+
+.card-equipes-dashboard{
+    height: 40em !important;
+}
