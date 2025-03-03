@@ -61,9 +61,16 @@ import {collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, deleteDoc}
                         Explicacao: data.Explicacao || '',
                         Texto: data.Texto || '',
                         Video: video,
-                    });
-                    $scope.$apply();
+                    });                    
                 });
+                
+                $scope.perguntas.sort((a, b) => {
+                    let numeroA = parseInt(a.Id.replace(/\D/g, ""))
+                    let numeroB = parseInt(b.Id.replace(/\D/g, ""))
+                    return numeroA - numeroB;
+                });
+
+                $scope.$apply();
             });
 
 
@@ -102,7 +109,7 @@ import {collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, deleteDoc}
                 Explicacao: '',
                 Texto: '',
                 Video: '',
-            }).then(function () {
+            }).then(function () {                
                 $messages.success("Pergunta adicionada com sucesso!");
             }).catch(function (error) {
                 $messages.error(error.message);
