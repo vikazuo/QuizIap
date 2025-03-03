@@ -1,0 +1,113 @@
+@using IronBugCore.Web.Helpers
+@{
+    ViewBag.Title = "Perguntas";
+}
+
+@section Scripts
+{
+    <script src="@Url.ContentVersioned("js/perguntas.js")" type="module"></script>
+}
+
+<div ng-controller="PerguntaController" ng-init="iniciar()">
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="list-group">
+                <a href="javascript:" class="list-group-item list-group-item-action" ng-class="perguntaSelecionada.Id === pergunta.Id ? 'active' : ''" ng-repeat="pergunta in perguntas" ng-click="selecionarPergunta(pergunta)">
+                    <h5 class="mb-1" ng-bind="pergunta.Id"></h5>
+
+                    <p class="mb-1" ng-bind="pergunta.Texto"></p>
+                    <div>
+                        <small ng-bind="pergunta.DataDeLiberacao | shortDateTimeString"></small>
+                        <small> - </small>
+                        <small ng-bind="pergunta.DataFinalDeLiberacao | shortDateTimeString"></small>
+                    </div>
+                </a>
+                <a href="javascript:" class="list-group-item list-group-item-action text-center" ng-click="adicionarPergunta()">Adicionar pergunta</a>
+            </div>
+        </div>
+
+        <div class="col-lg-8" ng-show="perguntaSelecionada">
+            <form>
+                <validation submit="salvar()"></validation>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title" ng-bind="perguntaSelecionada.Id"></h5>
+                        <div class="mt-2">
+                            <label class="form-label">Pergunta</label>
+                            <textarea class="form-control" ng-model="perguntaSelecionada.Texto" required-field></textarea>
+                        </div>
+
+                        <div class="mt-2">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th colspan="2">Alternativa</th>
+                                    <th>Correto</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="text-center align-middle">A</td>
+                                    <td><input class="form-control" ng-model="perguntaSelecionada.A" required-field/></td>
+                                    <td class="align-middle">
+                                        <input class="form-check-input" type="radio" name="radio" ng-model="perguntaSelecionada.Correto" value="A">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">B</td>
+                                    <td><input class="form-control" ng-model="perguntaSelecionada.B" required-field/></td>
+                                    <td class="align-middle">
+                                        <input class="form-check-input" type="radio" name="radio" ng-model="perguntaSelecionada.Correto" value="B">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">C</td>
+                                    <td><input class="form-control" ng-model="perguntaSelecionada.C" required-field/></td>
+                                    <td class="align-middle">
+                                        <input class="form-check-input" type="radio" name="radio" ng-model="perguntaSelecionada.Correto" value="C">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center align-middle">D</td>
+                                    <td><input class="form-control" ng-model="perguntaSelecionada.D" required-field/></td>
+                                    <td class="align-middle">
+                                        <input class="form-check-input" type="radio" name="radio" ng-model="perguntaSelecionada.Correto" value="D">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="form-label">Data de liberação</label>
+                            <div class="input-group">
+                                <input type="datetime-local" class="form-control" ng-model="perguntaSelecionada.DataDeLiberacao" required-field/>
+                                <input type="datetime-local" class="form-control" ng-model="perguntaSelecionada.DataFinalDeLiberacao" required-field/>
+                            </div>
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="form-label">Link do vídeo do YouTube</label>
+                            <input class="form-control" ng-model="perguntaSelecionada.Video"/>
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="form-label">Explicação</label>
+                            <textarea class="form-control" ng-model="perguntaSelecionada.Explicacao"></textarea>
+                        </div>
+
+                        <div class="mt-4 d-flex justify-content-between">
+                            <button type="button" class="btn btn-danger" ng-click="excluir()">Excluir pergunta</button>
+                            <button class="btn btn-success">Salvar</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+
+</div>
