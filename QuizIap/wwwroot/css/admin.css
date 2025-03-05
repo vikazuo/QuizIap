@@ -51,6 +51,12 @@ aside {
     box-shadow: 0 0 0 .25rem hsla(0, 0%, 27%, 0.25) !important;
 }
 
-.card-equipes-dashboard{
+.card-equipes-dashboard {
     height: 40em !important;
+}
+
+.lista-de-perguntas {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 90svh;
 }
