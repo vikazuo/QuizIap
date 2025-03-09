@@ -1,8 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using IronBugCore.Web.Helpers
+@{
+    ViewBag.Title = "Ranking geral";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Scripts
+{
+    <script src="@Url.ContentVersioned("js/dashboard.js")" type="module"></script>
+}
+
+<div ng-controller="DashboardController" ng-init="iniciar()">
+    <h2>@ViewBag.Title</h2>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th colspan="2">Nome</th>
+            <th>Pontuação</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="participante in participantes | orderBy: 'Pontuacao':true">
+            <td>{{$index + 1}}</td>
+            <td ng-bind="participante.Nome"></td>
+            <td ng-bind="participante.Pontuacao"></td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
