@@ -7,7 +7,8 @@ namespace QuizIap.Controllers;
 public class HomeController : Controller
 {
     public IActionResult Index() => View();
-    
     public IActionResult Participantes() => View();
     public IActionResult Perguntas() => View();
+    
+    public IActionResult AtualizarDatas() => View();
 }
