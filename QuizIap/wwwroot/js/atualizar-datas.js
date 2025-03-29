@@ -54,13 +54,16 @@ import {collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, deleteDoc}
         };
 
         $scope.alterarDatas = async function () {
-            if (!$scope.dataInicial || !$scope.dataFinal) {
+            if (!$scope.dataInicial || !$scope.dataFinal || !$scope.valorInicial || !$scope.valorFinal) {
                 return;
             }
 
-            var perguntasSelecionadas = $scope.perguntas.where(q => q.Selecionada === true);
+            for (let i = $scope.valorInicial; i <= $scope.valorFinal; i++) {
+                let titulo = `Pergunta ${i}`;
+                var pergunta = $scope.perguntas.firstOrDefault(null, q => q.Id === titulo);
+                if (pergunta === null)
+                    continue;
 
-            perguntasSelecionadas.forEach(pergunta => {
                 let document = doc(firestore, "Pergunta", pergunta.Id);
 
                 pergunta.DataDeLiberacao = $scope.dataInicial;
@@ -71,8 +74,7 @@ import {collection, doc, getFirestore, onSnapshot, updateDoc, setDoc, deleteDoc}
                 }).catch(function (error) {
                     $messages.error(error.message);
                 });
-
-            });
+            }
 
 
         };
