@@ -11,8 +11,19 @@
 <div ng-controller="ParticipanteController" ng-init="iniciar()">
     <h2>@ViewBag.Title</h2>
 
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="participante in participantes" ng-bind="participante.Nome"></li>
-    </ul>
+    <input type="text" class="form-control" ng-model="busca" placeholder="Buscar participante"/>
+    
+    <ol class="list-group list-group-numbered mt-2">
+        <li class="list-group-item d-flex justify-content-between align-items-start" 
+            ng-repeat="participante in participantes | orderBy: 'Nome' | filter: busca">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold" ng-bind="participante.Nome"></div>
+                <div class="small" ng-bind="participante.Telefone"></div>
+                <div class="small" ng-bind="participante.DataDeCadastro | shortDateTimeString"></div>
+            </div>
+            
+        </li>
+        
+    </ol>
     
 </div>

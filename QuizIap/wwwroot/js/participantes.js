@@ -30,7 +30,7 @@ import {getFirestore, collection, doc, setDoc, getDoc, onSnapshot, getDocs} from
                     $scope.participantes.push({
                         Nome: data.Nome,
                         Telefone: doc.id,
-                        DataDeCadastro: data.DataDeCadastro,
+                        DataDeCadastro: new Date(data.DataDeCadastro.seconds * 1000),
                     });
                     $scope.$apply();
                 });
